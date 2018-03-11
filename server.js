@@ -114,7 +114,7 @@ app.get('/sumbit-name/:name', function (req, res) {
     
     names.push(name);
     //JSON
-    req.send(JSON.stringify(names));
+    res.send(JSON.stringify(names));
 });
 
 // Do not change port, otherwise your app won't run on IMAD servers
