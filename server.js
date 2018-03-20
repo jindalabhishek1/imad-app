@@ -88,7 +88,7 @@ var config = {
     database:'abhishek1036cse16',
     host:'db.imad.hasura-app.io',
     port:'5432',
-    password: process.env.DB_password,
+    password: process.env.DB_PASSWORD
 };
 
 var counter = 0;
