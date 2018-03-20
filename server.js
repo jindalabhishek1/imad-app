@@ -90,7 +90,7 @@ var config = {
     host:'http://db.imad.hasura-app.io',
     port:'5432'
     password: process.env.DB_password
-}
+};
 
 var counter = 0;
 app.get('/counter', function (req, res) {
