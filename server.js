@@ -6,7 +6,7 @@ var Pool = require('pg').Pool;
 var app = express();
 app.use(morgan('combined'));
 
-var articles = {
+//var articles = {
     'article-one': {
         title: 'Article One | Abhishek Jindal',
         heading: 'Article One',
