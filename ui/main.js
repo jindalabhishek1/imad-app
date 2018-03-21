@@ -21,6 +21,8 @@ img.onclick = function() {
 */
 // Counter code
 
+
+/*
 var button = document.getElementById('counter');
 //var counter = 0;
 
@@ -52,9 +54,9 @@ button.onclick = function() {
     //var span = document.getElementById('count');
     //span.innerHTML = counter.toString();
 };
+*/
 
-//submit name
-
+//submit username, password
 var submit = document.getElementById('submit_btn');
 submit.onclick = function() {
     //make a request to the server and send the name
@@ -68,6 +70,8 @@ submit.onclick = function() {
             //take some action
             if(request.status == 200)
             {
+                alert('logged in successfully');
+                /*
                 var names = request.responseText;
                 names = JSON.parse(names);
                 var list = '';
@@ -75,17 +79,26 @@ submit.onclick = function() {
                     list += '<li>' + names[i] + '</li>'; 
                 }
                 var ul = document.getElementById('namelist');
-                ul.innerHTML = list;
+                ul.innerHTML = list;*/
+            } else if (request.status === 403) {
+                alert('Username/password is incorrect');
+            } else if (request.status === 500) {
+                alert('Something went wrong on server side');
             }
         }
         //if not do nothing
     };
     
     //make a request
-    var nameInput = document.getElementById('name');
-    var name = nameInput.value;
-    request.open('GET', 'http://abhishek1036cse16.imad.hasura-app.io/submit-name?name=' + name, true);
-    request.send(null);
+    var username = document.getElementById('username');
+    var password = document.getElementById('password');
+    //var name = nameInput.value;
+    console.log(username);
+    console.log(password);
+    //request.open('GET', 'http://abhishek1036cse16.imad.hasura-app.io/submit-name?name=' + name, true);
+    request.open('POST', 'http://abhishek1036cse16.imad.hasura-app.io/login', true);
+    request.setRequestHeader('Content-Type', 'application/json');
+    request.send(JSON.stringify({username: username, password: password}));
     
     //capture a list of names and render it as list
     
