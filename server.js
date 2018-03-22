@@ -122,7 +122,7 @@ app.post('/login', function (req, res) {
             res.status(500).send(err.toString());
         } else {
             if (result.rows.length === 0) {
-                res.send(403).send('username/password incorrect..');
+                res.status(403).send('username/password incorrect..');
             } else {
                 //match the passeord
                 var dbString = result.rows[0].password;
@@ -131,7 +131,7 @@ app.post('/login', function (req, res) {
                 if (hashedPassword === dbString) {
                     res.send('credentials correct...!!!');
                 } else {
-                    res.send(403).send('username/password is invalid...');
+                    res.status(403).send('username/password is invalid...');
                 }
             }
         }
