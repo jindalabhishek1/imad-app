@@ -91,8 +91,8 @@ submit.onclick = function() {
     };
     
     //make a request
-    var username = document.getElementById('username');
-    var password = document.getElementById('password');
+    var username = document.getElementById('username').value;
+    var password = document.getElementById('password').value;
     //var name = nameInput.value;
     console.log(username);
     console.log(password);
