@@ -82,7 +82,7 @@ submit.onclick = function() {
                 ul.innerHTML = list;*/
             } else if (request.status === 403) {
                 alert(username, password);
-                alert('Username/password is incorrect');
+                //alert('Username/password is incorrect');
             } else if (request.status === 500) {
                 alert('Something went wrong on server side');
             }
