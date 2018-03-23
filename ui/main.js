@@ -81,7 +81,7 @@ submit.onclick = function() {
                 var ul = document.getElementById('namelist');
                 ul.innerHTML = list;*/
             } else if (request.status === 403) {
-                console.log(username, password);
+                //console.log(username, password);
                 alert('Username/password is incorrect');
             } else if (request.status === 500) {
                 alert('Something went wrong on server side');
