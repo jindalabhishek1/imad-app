@@ -6,6 +6,14 @@ var crypto = require('crypto');
 var bodyParser = require('body-parser');
 var session = require('express-session');
 
+var config = {
+    user:'abhishek1036cse16',
+    database:'abhishek1036cse16',
+    host:'db.imad.hasura-app.io',
+    port:'5432',
+    password: process.env.DB_PASSWORD
+};
+
 var app = express();
 app.use(morgan('combined'));
 app.use(bodyParser.json());
@@ -13,81 +21,6 @@ app.use(session({
     secret: 'someRandomSecretValue',
     cookie: {maxAge: 1000 * 60 * 60 * 24 * 30}
 }));
-
-/*
-var articles = {
-    'article-one': {
-        title: 'Article One | Abhishek Jindal',
-        heading: 'Article One',
-        date: 'March 3,2018',
-        content: `
-            <p>
-                This is the content of my first article.This is the content of my first article.This is the content of my first article.This is the content of my first article.This is the content of my first article.This is the content of my first article.This is the content of my first article.This is the content of my first article.                    
-            </p>
-            <p>
-                This is the content of my first article.This is the content of my first article.This is the content of my first article.This is the content of my first article.This is the content of my first article.This is the content of my first article.This is the content of my first article.This is the content of my first article.                    
-            </p>
-            <p>
-                This is the content of my first article.This is the content of my first article.This is the content of my first article.This is the content of my first article.This is the content of my first article.This is the content of my first article.This is the content of my first article.This is the content of my first article.                    
-            </p>
-        `
-    },
-    'article-two': {
-        title: 'Article Two | Abhishek Jindal',
-        heading: 'Article Two',
-        date: 'March 4,2018',
-        content: `
-            <p>
-                This is the content of my second article.                
-            </p>
-        `},
-    'article-three': {
-        title: 'Article Third | Abhishek Jindal',
-        heading: 'Article Third',
-        date: 'March 5,2018',
-        content: `
-            <p>
-                This is the content of my third article.                
-            </p>
-        `},
-};
-*/
-
-/*function createTemplate (data) {
-    var title = data.title;
-    var heading = data.heading;
-    var date = data.date;
-    var content = data.content;
-    var htmlTemplate = `
-    <html>
-        <head>
-            <title>
-                ${title}
-            </title>
-            <meta name="viewport" content="width=device-width, initial-scale=1"/>
-            <link href="/ui/style.css" rel="stylesheet" />
-        </head>
-        <body>
-            <div class="container">
-                <div>
-                    <a href="/">Home</a>
-                </div>
-                <hr/>
-                <div>
-                    <h3>${heading}</h3>
-                </div>
-                <div>
-                    ${date.toDateString()}
-                </div>
-                <div>
-                    ${content}
-                </div>
-            </div>
-        </body>
-    </html>
-    `;
-    return htmlTemplate;
-}*/
 
 app.get('/', function (req, res) {
   res.sendFile(path.join(__dirname, 'ui', 'index.html'));
@@ -152,7 +85,7 @@ app.post('/login', function (req, res) {
 
 app.get('/check-login', function (req, res) {
    if (req.session && req.session.auth && req.session.auth.userId) {
-       pool.query('SELECT * FROM "user" WHERE id = $1', [res.sesssion.auth.userid], function (err, result) {
+       pool.query('SELECT * FROM "user" WHERE id = $1', [req.session.auth.userId], function (err, result) {
            if (err) {
                res.status(500).send(err.toString());
            } else {
@@ -160,7 +93,7 @@ app.get('/check-login', function (req, res) {
            }
        });
    } else {
-       res.send('You are not logged in');
+       res.status(400).send('You are not logged in');
    }
 });
 
@@ -169,35 +102,11 @@ app.get('/logout', function (req, res) {
     res.send('<html><body>Logged out!<br/><br/><a href="/">Back to home</a></body></html>');
 });
 
-var config = {
-    user:'abhishek1036cse16',
-    database:'abhishek1036cse16',
-    host:'db.imad.hasura-app.io',
-    port:'5432',
-    password: process.env.DB_PASSWORD
-};
-
-var counter = 0;
-app.get('/counter', function (req, res) {
-    counter = counter + 1;
-    res.send(counter.toString());
-});
-
 app.get('/ui/style.css', function (req, res) {
   res.sendFile(path.join(__dirname, 'ui', 'style.css'));
 });
 
 var pool = new Pool(config);
-app.get('/test-db', function (req, res) {
-    pool.query('SELECT * FROM test', function (err, result) {
-        if (err){
-            res.status(500).send(err.toString());
-        } else {
-            res.send(JSON.stringify(result.rows));
-        }
-    });
-});
-
 app.get('/ui/main.js', function (req, res) {
   res.sendFile(path.join(__dirname, 'ui', 'main.js'));
 });
