@@ -85,8 +85,6 @@ submit.onclick = function() {
                 alert('Username/password is incorrect');
             } else if (request.status === 500) {
                 alert('Something went wrong on server side');
-        
-            
         }
         else  {
                 console.log(username, password);
@@ -95,7 +93,6 @@ submit.onclick = function() {
         //if not do nothing
         }
     };
-    
     //make a request
     var username = document.getElementById('username').value;
     var password = document.getElementById('password').value;
@@ -106,6 +103,5 @@ submit.onclick = function() {
     request.open('POST', 'http://abhishek1036cse16.imad.hasura-app.io/login', true);
     request.setRequestHeader('Content-Type', 'application/json');
     request.send(JSON.stringify({username: username, password: password}));
-    
     //capture a list of names and render it as list
-    
+};
