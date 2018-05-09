@@ -38,7 +38,6 @@ function loadLoginForm() {
                     submit.value = 'Login';
                 }
                 else {
-                    console.log(username, password);
                     alert('Something went wrong on the server');
                     submit.value = 'Login';
                 }
@@ -58,6 +57,14 @@ function loadLoginForm() {
         submit.value = 'Logging in ....';
         //capture a list of names and render it as list
     };
+}
+
+function loadLoggedInUser (username) {
+    var loginArea = document.getElementById('login_area');
+    loginArea.innerHTML = `
+        <h3> Hi <i>${username}</i></h3>
+        <a href="/logout">Logout</a>
+        `;
 }
 
 function loadLogin() {
