@@ -93,7 +93,8 @@ submit.onclick = function() {
                 alert('Username/password is incorrect');
             }
         //if not do nothing
-    
+        }
+    };
     
     //make a request
     var username = document.getElementById('username').value;
