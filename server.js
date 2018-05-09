@@ -53,7 +53,7 @@ var articles = {
 };
 */
 
-function createTemplate (data) {
+/*function createTemplate (data) {
     var title = data.title;
     var heading = data.heading;
     var date = data.date;
@@ -87,7 +87,7 @@ function createTemplate (data) {
     </html>
     `;
     return htmlTemplate;
-}
+}*/
 
 app.get('/', function (req, res) {
   res.sendFile(path.join(__dirname, 'ui', 'index.html'));
@@ -124,7 +124,7 @@ app.post('/login', function (req, res) {
     var password = req.body.password;
     pool.query('SELECT * FROM "user" WHERE username = $1', [username], function (err, result) {
     if (err) {
-            res.send(500).send(err.toString());
+            res.status(500).send(err.toString());
         } else {
             if (result.rows.length === 0) {
                 res.status(403).send('username/password incorrect..');
@@ -143,7 +143,7 @@ app.post('/login', function (req, res) {
                     //{auth: {userId}}
                     res.send('credentials correct...!!!');
                 } else {
-                    res.send(403).send('username/password is invalid...');
+                    res.status(403).send('username/password is invalid...');
                 }
             }
         }
@@ -152,7 +152,13 @@ app.post('/login', function (req, res) {
 
 app.get('/check-login', function (req, res) {
    if (req.session && req.session.auth && req.session.auth.userId) {
-       res.send('You are logged in: ' + req.session.auth.userId.toString());
+       pool.query('SELECT * FROM "user" WHERE id = $1', [res.sesssion.auth.userid], function (err, result) {
+           if (err) {
+               res.status(500).send(err.toString());
+           } else {
+               res.send(result.rows[0].username);
+           }
+       });
    } else {
        res.send('You are not logged in');
    }
@@ -160,7 +166,7 @@ app.get('/check-login', function (req, res) {
 
 app.get('/logout', function (req, res) {
     delete req.session.auth;
-    res.send('Logged Out');
+    res.send('<html><body>Logged out!<br/><br/><a href="/">Back to home</a></body></html>');
 });
 
 var config = {
@@ -216,6 +222,9 @@ app.get('/articles/:articleName', function (req, res) {
   });
 });
 
+app.get('/ui/:filename', function (req, res) {
+    res.sendFile(path.join(__dirname, 'ui', req.params.fileName));
+});
 // Do not change port, otherwise your app won't run on IMAD servers
 // Use 8080 only for local development if you already have apache running on 80
 
