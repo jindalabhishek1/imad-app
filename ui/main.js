@@ -80,7 +80,8 @@ submit.onclick = function() {
                 }
                 var ul = document.getElementById('namelist');
                 ul.innerHTML = list;*/
-                res.redirect('/UserHomePage');
+                var res;
+                res.send('<script>window.location.href="your URL";</script>');
             } else if (request.status === 403) {
                 console.log(username, password);
                 alert('Username/password is incorrect');
