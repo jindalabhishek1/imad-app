@@ -64,25 +64,24 @@ function loadLoggedInUser (username) {
     loginArea.innerHTML = `
     
         <div id="map" height=600 width = 500></div>
-   <script>
-     // TODO: Create a map variable
-  	 var map;
+  var map;
        // TODO: Complete the following function to initialize the map
      function initMap() {
          // TODO: use a constructor to create a new map JS object. You can use the coordinates
          // we used, 40.7413549, -73.99802439999996 or your own!
   	   map = new google.maps.Map(document.getElementById('map'), {
-  	   center: {lat: 30.5176089, lng: 76.6595696},
+  	   center: {lat: 40.7413549, lng: -73.99802439999996},
   	   zoom: 13
   	   });
-       var tribeca = {lat: 30.5176089, lng: 76.6595696};
+       var tribeca = {lat: 40.719526, lng: -74.0089934};
        var marker = new google.maps.Marker({
-         position: chitkara,
+         position: tribeca,
          map: map,
-         title: 'Chitkara University'
+         title: 'First Marker'
        })
      }
-   </script>
+     
+     </script>
    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD5Zsw3lYl-eoR-RLe50jb3gea3FcPhXnM&v=3&callback=initMap">
     </script> 
     `;
