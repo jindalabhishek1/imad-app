@@ -166,12 +166,7 @@ API Course, Lesson 1 -->
               function populateInfoWindow(marker, infowindow) {
                 if (infowindow.marker != marker) {
                   infowindow.marker = marker;
-                  var text = "";
-                    for (i = 0; i < halls.length; i++) {
-                        text += halls[i] + "<br>";
-                    }
-                    
-                  infowindow.setContent(`<div>  ${marker.halls} </div>
+                  infowindow.setContent(`<div>  ${marker.title} </div>
                     <!-- Iterate over halls and then apend here in the list -->
                     `
                   );
