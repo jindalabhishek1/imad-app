@@ -41,7 +41,6 @@ function loadLoginForm() {
                     alert('Something went wrong on the server');
                     submit.value = 'Login';
                 }
-                loadLogin();
             }
         };
         //make a request
@@ -88,4 +87,3 @@ function loadLogin() {
     request.send(null);
 }
 
-loadLogin();
