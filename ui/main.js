@@ -58,14 +58,15 @@ function loadLoginForm() {
         //capture a list of names and render it as list
     };
 }
-
+//saravjeet.singh@chitkara.edu.in
 function loadLoggedInUser (username) {
     var loginArea = document.getElementById('login_area');
     loginArea.innerHTML = `
-         <div id="map"></div>  `;
-   
-   
+        <h3> Hi <i>${username}</i></h3>
+        <a href="/logout">Logout</a>
+    `;
 }
+
 function loadLogin() {
     // Check if the user is already logged in
     var request = new XMLHttpRequest();
