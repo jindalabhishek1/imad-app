@@ -93,15 +93,15 @@ API Course, Lesson 1 -->
                 <!--<div id="home"><a href="/">Home</a></div>
                 <div id="logout"><a href="/logout" >Logout</a></div>-->
             </div>
-              <div class="options-box">
+            <div class="options-box">
                 <h1>Find Your New NYC Home</h1>
                 <div>
                   <input id="show-listings" type="button" value="Show Listings">
                   <input id="hide-listings" type="button" value="Hide Listings">
                 </div>
-              </div>
-              <div id="map"></div>
             </div>
+            <div id="map"></div>
+        </div>
             <script>
               var map;
         
@@ -115,8 +115,8 @@ API Course, Lesson 1 -->
                 });
         
                 var locations = [
-                  {title: 'Babbage Block', location: {lat: 30.517434, lng: 76.660044}, halls: []},
-                  {title: 'Architect Block', location: {lat: 30.517181, lng: 76.660228}}, halls: ["preirie"],
+                  {title: 'Babbage Block', location: {lat: 30.517434, lng: 76.660044}},
+                  {title: 'Architect Block', location: {lat: 30.517181, lng: 76.660228}},
                   {title: 'Turing Block', location: {lat: 30.516491, lng: 76.660382}},
                   {title: 'Demorgan Block', location: {lat: 30.516186, lng: 76.660314}},
                   {title: 'Edison Block', location: {lat: 30.516402, lng: 76.659759}},
@@ -141,7 +141,7 @@ API Course, Lesson 1 -->
                   var title = locations[i].title;
                   var halls = locations[i].halls;
                   var marker = new google.maps.Marker({
-                    map: map,
+                    //map: map,
                     position: position,
                     title,
                     halls,
