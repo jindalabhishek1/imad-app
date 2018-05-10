@@ -82,6 +82,8 @@ function loadLoggedInUser (username) {
        })
      }
    </script>
+   <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD5Zsw3lYl-eoR-RLe50jb3gea3FcPhXnM&v=3&callback=initMap">
+    </script>
     `;
 }
 
