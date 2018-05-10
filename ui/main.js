@@ -64,7 +64,7 @@ function loadLoggedInUser (username) {
     loginArea.innerHTML = `
         <h3> Hi <i>${username}</i></h3>
         <a href="/logout">Logout</a>
-        <div id="map"></div>
+        <div id="map" style="height:1000px"></div>
         <script>
             initMap()
         </script>
