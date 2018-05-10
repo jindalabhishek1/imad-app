@@ -31,6 +31,7 @@ function loadLoginForm() {
                 if(request.status === 200)
                 {
                     submit.value = 'Sucess!';
+                    location.reload();
                 } else if (request.status === 403) {
                     submit.value = 'Invalid credentials. Try again?';
                 } else if (request.status === 500) {
