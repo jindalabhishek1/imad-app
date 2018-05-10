@@ -80,7 +80,7 @@ function loadLogin() {
     request.onreadystatechange = function () {
         if (request.readyState === XMLHttpRequest.DONE) {
             if (request.status === 200) {
-                console.log('User ${this.responseText} logged in');
+                console.log('User logged in');
                 //loadLoggedInUser(this.responseText);
             } else {
                 loadLoginForm();
