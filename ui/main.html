@@ -6,11 +6,24 @@ API Course, Lesson 1 -->
    <style type="text/css">
      html, body { height: 100%; margin: 0; padding: 0; }
      #map { height: 100%; }
+     #home {
+         float:; right;
+     }
+     #logout {
+         float: left;
+     }
    </style>
  </head>
  <body>
+     <div class="header">
+         <div id="home"><a href="/">Home</a></div>
+         <div id="logout"><a href="/logout" >Logout</a></div>
+     </div>
    <!-- TODO 1: Create a place to put the map in the HTML-->
    <div id="map"></div>
+   <div class="footer">
+       
+   </div>
    <script>
      // TODO: Create a map variable
   	 var map;
@@ -35,98 +48,3 @@ API Course, Lesson 1 -->
    </script>
  </body>
 </html>
-
-<!--
-<!DOCTYPE html>
-<html lang="en-US">
-  <head>
-    <meta name="viewport" content="width = device-width, intial-scale = 1.0">
-    <title>
-      Welcome Guide for new bees
-    </title>
-    <style>
-    body {
-      background-color: #252525;
-      border-top: 4px solid #ce1815;
-    }
-
-    .center {
-      background-color: #ffffff;
-      max-width: 850px;
-      width: 100%;
-      margin: 0 auto;
-      padding-bottom: 25px;
-      height: auto;
-      //float: right;
-      text-align: center;
-    }
-
-    .container {
-      height: auto;
-      padding: 10px,0,0;
-      width: 100%;
-      margin-top: 15px;
-    }
-
-    .cu_logo {
-      padding: 10px,0px,10px,0px;
-      text-align: center;
-      width: 100%;
-    }
-
-    .form h4 {
-      color: #ed3237;
-      font-size: 24px;
-      font-weight: 400;
-      text-align: center;
-      padding-top: 20px;
-    }
-
-    .form {
-      background-color: #
-    }
-    
-    #map {
-        height: 1000px;
-    }
-    </style>
-  </head>
-  <body>
-    <div class="container">
-      <div class="cu_logo">
-        <img src="https://punjab.chitkara.edu.in//Interface/Dashboard/cu_logo.png" alt="chitkara logo" style="color: #ed3237;" />
-      </div>
-      <div class="center">
-          <h3> Hi <i>Buddy</i></h3>
-          <a href="/logout">Logout</a>
-          <div id="map">
-              
-          </div>
-      </div>
-    </div>
-    <script>
-     // TODO: Create a map variable
-  	 var map;
-       // TODO: Complete the following function to initialize the map
-     function initMap() {
-         // TODO: use a constructor to create a new map JS object. You can use the coordinates
-         // we used, 40.7413549, -73.99802439999996 or your own!
-  	   map = new google.maps.Map(document.getElementById('map'), {
-  	   center: {lat: 40.7413549, lng: -73.99802439999996},
-  	   zoom: 13
-  	   });
-       var tribeca = {lat: 40.719526, lng: -74.0089934};
-       var marker = new google.maps.Marker({
-         position: tribeca,
-         map: map,
-         title: 'First Marker'
-       })
-     }
-   </script>
-   TODO: Load the JS API ASYNCHRONOUSLY below.
-   <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD5Zsw3lYl-eoR-RLe50jb3gea3FcPhXnM&v=3&callback=initMap">
-   </script>
-  </body>
-</html>
-
--->
