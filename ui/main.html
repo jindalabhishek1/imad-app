@@ -141,7 +141,7 @@ API Course, Lesson 1 -->
                   var title = locations[i].title;
                   var halls = locations[i].halls;
                   var marker = new google.maps.Marker({
-                    //map: map,
+                    map: map,
                     position: position,
                     title,
                     halls,
@@ -154,10 +154,10 @@ API Course, Lesson 1 -->
                   marker.addListener('click', function() {
                     populateInfoWindow(this, largeInfowindow);
                   });
-                  //bounds.extend(markers[i].position);
+                  bounds.extend(markers[i].position);
                 }
         
-                //map.fitBounds(bounds);
+                map.fitBounds(bounds);
         
               document.getElementById('show-listings').addEventListener('click', showListings);
               document.getElementById('hide-listings').addEventListener('click', hideListings);
