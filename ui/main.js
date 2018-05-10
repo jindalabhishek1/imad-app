@@ -61,7 +61,7 @@ function loadLoginForm() {
 
 function loadLoggedInUser (username) {
     var loginArea = document.getElementById('login_area');
-    loginArea.innerHTML =  '<div id="map" height=600 width = 500></div>';
+    loginArea.innerHTML =  `<div id="map" height=600 width = 500></div>`;
    <script>
      // TODO: Create a map variable
   	 var map;
