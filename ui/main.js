@@ -87,3 +87,5 @@ function loadLogin() {
     request.send(null);
 }
 
+loadLoginForm();
+
