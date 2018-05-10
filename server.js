@@ -97,7 +97,7 @@ app.post('/login', function (req, res) {
                     //set a cookie with a session id
                     //internally, on the server side, it maps the cookie with an object auth
                     //{auth: {userId}}
-                    res.send('credentials correct...!!!');
+                    res.redirect('back');
                 } else {
                     res.status(403).send('username/password is invalid...');
                 }
