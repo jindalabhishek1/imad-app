@@ -122,15 +122,15 @@ API Course, Lesson 1 -->
                   {title: 'Edison Block', location: {lat: 30.516402, lng: 76.659759}, halls: ["mooc hall"]},
                   {title: 'Newton Block', location: {lat: 30.516372, lng: 76.659484}, halls: ["Apple lab"]},
                   {title: 'Fleming Block', location: {lat: 30.515704, lng: 76.660441}, halls: ["somehall"]},
-                  {title: 'Library', location: {lat: 30.515857, lng: 76.660546}, halls},
+                  {title: 'Library', location: {lat: 30.515857, lng: 76.660546}, halls: []},
+                  {title: 'Pharmacy Block', location: {lat: 30.515539, lng: 76.660713}, halls: ["lab"]},
+                  {title: 'Galelio Block', location: {lat: 30.515644, lng: 76.659175}, halls: ["Nursing"]},
+                  {title: 'Teresa Block', location: {lat: 30.517183, lng: 76.658893}, halls: ["radio", "languages"]},
+                  {title: 'Hotel Management Block', location: {lat: 30.514873, lng: 76.659566}, halls: ["hm"]},
+                  /*{title: 'Pharmacy Block', location: {lat: 30.515539, lng: 76.660713}},
                   {title: 'Pharmacy Block', location: {lat: 30.515539, lng: 76.660713}},
-                  {title: 'Galelio Block', location: {lat: 30.515644, lng: 76.659175}},
-                  {title: 'Teresa Block', location: {lat: 30.517183, lng: 76.658893}},
-                  {title: 'Hotel Management Block', location: {lat: 30.514873, lng: 76.659566}},
                   {title: 'Pharmacy Block', location: {lat: 30.515539, lng: 76.660713}},
-                  {title: 'Pharmacy Block', location: {lat: 30.515539, lng: 76.660713}},
-                  {title: 'Pharmacy Block', location: {lat: 30.515539, lng: 76.660713}},
-                  {title: 'Pharmacy Block', location: {lat: 30.515539, lng: 76.660713}},
+                  {title: 'Pharmacy Block', location: {lat: 30.515539, lng: 76.660713}},*/
                 ];
         
                 var largeInfowindow = new google.maps.InfoWindow();
@@ -166,11 +166,18 @@ API Course, Lesson 1 -->
               function populateInfoWindow(marker, infowindow) {
                 if (infowindow.marker != marker) {
                   infowindow.marker = marker;
+                  var text = "";
+                    for (i = 0; i < halls.length; i++) {
+                        text += halls[i] + "<br>";
+                    }
+                    document.getElementById("demo").innerHTML = text;
                   infowindow.setContent(`<div>  ${marker.title} </div>
-                    <br>
-                    <!-- Iterate over halls and then apend here in the list -->
+                    <br><div id="demo"></div>
                     
-                  `);
+                    
+                    <!-- Iterate over halls and then apend here in the list -->
+                    `
+                  );
                   infowindow.open(map, marker);
         
                   infowindow.addListener('closeclick', function() {
