@@ -46,29 +46,107 @@ API Course, Lesson 1 -->
             <!--<div id="home"><a href="/">Home</a></div>
             <div id="logout"><a href="/logout" >Logout</a></div>-->
         </div>
-        <!-- TODO 1: Create a place to put the map in the HTML-->
-        <div id="map"></div>
-        <div class="footer">
-       
+<div class="container">
+      <div class="options-box">
+        <h1>Find Your New NYC Home</h1>
+        <div>
+          <input id="show-listings" type="button" value="Show Listings">
+          <input id="hide-listings" type="button" value="Hide Listings">
         </div>
-        <script>
-        // TODO: Create a map variable
-  	        var map;
-        // TODO: Complete the following function to initialize the map
-            function initMap() {
-         // TODO: use a constructor to create a new map JS object. You can use the coordinates
-         // we used, 40.7413549, -73.99802439999996 or your own!
-  	            map = new google.maps.Map(document.getElementById('map'), {
-  	            center: {lat: 40.7413549, lng: -73.99802439999996},
-  	            zoom: 13
-  	            });
-                var tribeca = {lat: 40.719526, lng: -74.0089934};
-                var marker = new google.maps.Marker({
-                position: tribeca,
-                map: map,
-                title: 'First Marker'
-                })
-            }
+      </div>
+      <div id="map"></div>
+    </div>
+    <script>
+      var map;
+
+      var markers = [];
+
+      function initMap() {
+        // Constructor creates a new map - only center and zoom are required.
+        map = new google.maps.Map(document.getElementById('map'), {
+          center: {lat: 30.5176089, lng: 76.6595696},
+          zoom: 18
+        });
+
+        var locations = [
+          {title: 'Babbage Block', location: {lat: 30.517434, lng: 76.660044}, halls: []},
+          {title: 'Architect Block', location: {lat: 30.517181, lng: 76.660228}}, halls: ["preirie"],
+          {title: 'Turing Block', location: {lat: 30.516491, lng: 76.660382}},
+          {title: 'Demorgan Block', location: {lat: 30.516186, lng: 76.660314}},
+          {title: 'Edison Block', location: {lat: 30.516402, lng: 76.659759}},
+          {title: 'Newton Block', location: {lat: 30.516372, lng: 76.659484}},
+          {title: 'Fleming Block', location: {lat: 30.515704, lng: 76.660441}},
+          {title: 'Library', location: {lat: 30.515857, lng: 76.660546}},
+          {title: 'Pharmacy Block', location: {lat: 30.515539, lng: 76.660713}},
+          {title: 'Galelio Block', location: {lat: 30.515644, lng: 76.659175}},
+          {title: 'Teresa Block', location: {lat: 30.517183, lng: 76.658893}},
+          {title: 'Hotel Management Block', location: {lat: 30.514873, lng: 76.659566}},
+          {title: 'Pharmacy Block', location: {lat: 30.515539, lng: 76.660713}},
+          {title: 'Pharmacy Block', location: {lat: 30.515539, lng: 76.660713}},
+          {title: 'Pharmacy Block', location: {lat: 30.515539, lng: 76.660713}},
+          {title: 'Pharmacy Block', location: {lat: 30.515539, lng: 76.660713}},
+        ];
+
+        var largeInfowindow = new google.maps.InfoWindow();
+        var bounds = new google.maps.LatLngBounds();
+
+        for (var i = 0; i < locations.length; i++) {
+          var position = locations[i].location;
+          var title = locations[i].title;
+          var halls = locations[i].halls;
+          var marker = new google.maps.Marker({
+            //map: map,
+            position: position,
+            title,
+            halls,
+            animation: google.maps.Animation.DROP,
+            id: i
+          });
+
+          markers.push(marker);
+
+          marker.addListener('click', function() {
+            populateInfoWindow(this, largeInfowindow);
+          });
+          //bounds.extend(markers[i].position);
+        }
+
+        //map.fitBounds(bounds);
+
+      document.getElementById('show-listings').addEventListener('click', showListings);
+      document.getElementById('hide-listings').addEventListener('click', hideListings);
+    }
+
+      function populateInfoWindow(marker, infowindow) {
+        if (infowindow.marker != marker) {
+          infowindow.marker = marker;
+          infowindow.setContent(`<div>  ${marker.title} </div>
+            <br>
+            <!-- Iterate over halls and then apend here in the list -->
+            
+          `);
+          infowindow.open(map, marker);
+
+          infowindow.addListener('closeclick', function() {
+            infowindow.setMarker = null;
+          });
+        }
+      }
+
+      function showListings() {
+        var bounds = new google.maps.LatLngBounds();
+        for (var i = 0; i < markers.length; i++) {
+          markers[i].setMap(map);
+          bounds.extend(markers[i].position);
+        }
+        map.fitBounds(bounds);
+      }
+
+      function hideListings() {
+        for (var i = 0; i < markers.length; i++) {
+          markers[i].setMap(null);
+        }
+      }
         </script>
         <!--TODO: Load the JS API ASYNCHRONOUSLY below.-->
         <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD5Zsw3lYl-eoR-RLe50jb3gea3FcPhXnM&v=3&callback=initMap">
