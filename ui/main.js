@@ -59,6 +59,7 @@ function loadLoginForm() {
     };
 }
 //saravjeet.singh@chitkara.edu.in
+/*
 function loadLoggedInUser (username) {
     var loginArea = document.getElementById('login_area');
     loginArea.innerHTML = `
@@ -70,6 +71,7 @@ function loadLoggedInUser (username) {
         </script>
     `;
 }
+*/
 
 function loadLogin() {
     // Check if the user is already logged in
@@ -77,7 +79,8 @@ function loadLogin() {
     request.onreadystatechange = function () {
         if (request.readyState === XMLHttpRequest.DONE) {
             if (request.status === 200) {
-                loadLoggedInUser(this.responseText);
+                console.log('User ${username} logged in');
+                //loadLoggedInUser(this.responseText);
             } else {
                 loadLoginForm();
             }
