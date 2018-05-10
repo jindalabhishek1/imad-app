@@ -62,9 +62,8 @@ function loadLoginForm() {
 function loadLoggedInUser (username) {
     var loginArea = document.getElementById('login_area');
     loginArea.innerHTML = `
-    <h3> Hi <i>${username}</i></h3>
-        <a href="/logout">Logout</a>
-        /*<div id="map"></div>
+    
+        <div id="map" height=600 width = 500></div>
    <script>
      // TODO: Create a map variable
   	 var map;
@@ -85,7 +84,7 @@ function loadLoggedInUser (username) {
      }
    </script>
    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD5Zsw3lYl-eoR-RLe50jb3gea3FcPhXnM&v=3&callback=initMap">
-    </script>*/ 
+    </script> 
     `;
 }
 
