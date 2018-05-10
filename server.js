@@ -22,8 +22,31 @@ app.use(session({
     cookie: {maxAge: 1000 * 60 * 60 * 24 * 30}
 }));
 
+
+
+
+function checkLogin(req){
+    if (req.session && req.session.auth && req.session.auth.userId) {
+       pool.query('SELECT * FROM "user" WHERE id = $1', [req.session.auth.userId], function (err, result) {
+           if (err) {
+               return 500;
+           } else {
+               return result.rows[0].username;
+           }
+       });
+   } else {
+       return 400; 
+   }
+}
+
 app.get('/', function (req, res) {
-  res.sendFile(path.join(__dirname, 'ui', 'index.html'));
+  result =  checkLogin(req);
+  if(result == 400 || result == 500){
+      res.sendFile(path.join(__dirname, 'ui', 'index.html'));
+  }
+  else {
+      res.sendFile(path.join(__dirname, 'ui', 'main.html'));
+  }
 });
 
 function hash (input, salt) {
@@ -84,16 +107,15 @@ app.post('/login', function (req, res) {
 });
 
 app.get('/check-login', function (req, res) {
-   if (req.session && req.session.auth && req.session.auth.userId) {
-       pool.query('SELECT * FROM "user" WHERE id = $1', [req.session.auth.userId], function (err, result) {
-           if (err) {
-               res.status(500).send(err.toString());
-           } else {
-               res.send(result.rows[0].username);
-           }
-       });
-   } else {
+   result = checkLogin(req);
+   if(result == 500){
+       res.status(500).send(err.toString());
+   }
+   else if(result == 400){
        res.status(400).send('You are not logged in');
+   }
+   else{
+       res.send(result);
    }
 });
 
