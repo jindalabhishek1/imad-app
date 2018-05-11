@@ -92,5 +92,5 @@ function loadLogin() {
     request.send(null);
 }
 
-loadLogin();
+loadLoginForm();
 
