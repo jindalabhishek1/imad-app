@@ -1,3 +1,3 @@
 # Welcome guide for newbees 
 Contributers : `Abhishek Jindal`
-               `Akashdeep Singh`
+               `Akashdeep Singh(github.com/akashtig`
